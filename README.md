@@ -1,102 +1,65 @@
-# Connecting USB QR Code Scanner
+# **QR-Scanner-Application**
 
-Connecting an USB based QR Code Scanner to an Industrial Edge Device.
+This IOT2050 application has the task of.... [overview text]
 
-- [Connecting USB QR Code Scanner](#connecting-usb-qr-code-scanner)
-  - [Description](#description)
-    - [Overview](#overview)
-    - [General task](#general-task)
-  - [Requirements](#requirements)
-    - [Used components](#used-components)
-    - [TIA Project](#tia-project)
-    - [Configuring PLC Connection](#configuring-plc-connection)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Implementation](#implementation)
-  - [Documentation](#documentation)
-  - [Contribution](#contribution)
-  - [Licence and Legal Information](#licence-and-legal-information)
+![overview application](images/overview.png)
 
-## Description
+## **Hardware**
 
-### Overview
+The following hardware components are required for the application:
 
-This application examples shows how to connect a QR Code Scanner via USB to the Industrial Edge Device. The scanned QR Code will be sent to a PLC and displayed in an HMI Panel.
+- **SIMATIC IOT2050**
+- **Datalogic Scanning Inc. GD4430-BK Scanner**
 
-### General task
+It is possible to use another scanner, but then some adjustments have to be made in the main-file (this will be explained later).
 
-The application reads the QR Code provided by the scanner and publishes it on the IE Databus to the topic corresponding to the S7 Connector, which sends the data to the PLC. This  topic needs to be created in the IE Databus in advance.
-Scanner type, plc tag, databus topic as well as databus credentials can be configured via an external configuration file.
+## **Prepare the IOT2050**
 
-![deploy VFC](docs/graphics/qrcode_task.png)
+Follow [SIMATIC_IOT2050_Setting_up.md](https://github.com/uwedaeumler/IOT2050-SmartFarming-Application/blob/main/docs/SIMATIC_IOT2050_setting_up.md) for the following steps:
 
-## Requirements
+- Installing the SD-Card Example Image (in this example the image V1.1.1 was used)
+- First commissioning of the SIMATIC IOT2050: Remote access with Putty SSH Connection
+- Working internet connection on the IOT2050
 
-### Used components
+An update must be performed for the system and *git* must be installed. The following commands are executed for this:
 
-- Industrial Edge App Publisher V1.2.7
-- Docker Engine 18.09.6
-- Docker Compose V2.4
-- S7 Connector V1.2.26
-- S7 Connector Configurator V1.2.23
-- IE Databus V1.2.16
-- IE Databus Configurator V1.2.23
-- Industrial Edge Device V1.2.0-56
-- QR Code Scanner: SIMATIC MV320
-- TIA Portal V16
-- PLC: CPU 1518 FW 2.8.3
+    sudo apt-get update
+    sudo apt-get upgrade
+    sudo apt-get install git
 
-### TIA Project
+## **Install Docker on the IOT2050**
 
-The used TIA Portal project can be found in the [miscellaneous repository](https://github.com/industrial-edge/miscellaneous) in the tank application folder and is also used for several further application examples:
+**Set up the repository:**
 
-- [Tia Tank Application](https://github.com/industrial-edge/miscellaneous/tree/main/tank%20application)
-  
-### Configuring PLC Connection
+    sudo apt-get update
 
-Further information about how to configure the S7 Connection to write data to the PLC can be found in the [docs](docs/PLC_connection.md) section
+    sudo apt-get install \ ca-certificates \ curl \ gnupg \ lsb-release
 
-- Configure IE Databus
-- Configure S7 Connection
+    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
-## Installation
+**Install Docker Engine:**
 
-You can find the further information about the following steps in the [docs](./docs)
+    sudo apt-get update
 
-- [Configure QR Code Scanner](docs/Installation.md#configure-qr-code-scanner)
-- [Build application](docs/Installation.md#build-application)
-- [Upload app to Industrial Edge Management](docs/Installation.md#upload-scanner-app-to-the-industrial-edge-managment)
-- [Deploying application to Industrial Edge Device](docs/Installation.md#deploying-of-qr-code-scanner-demo)
+    sudo apt-get install docker-ce docker-ce-cli containerd.io
 
-## Usage
+**Verify the successful installation:**
 
-Plug your SIMATIC MV320 Bar Code Scanner (or any other USB Scanner) to one of the USB Ports of your Industrial Edge Device.
+    sudo docker run hello-world
 
-Go to the TIA Portal Project, start the HMI Runtime and scan any available QR Code (e.g the following QR Code). A pop up will appear with the content of the scanned code.
+If the installation is successful, the output should contain the following:
 
-You can also open the GBD data block in the TIA Portal and check the content of the APP_QRCode variable in the app signals structure.
+![successful installation](images/docker_installation.png)
 
-![QR_Code_Industrial_Edge](docs/graphics/qr_code_industrial_edge.png)
+**Add Docker-Compose:**
 
-## Implementation
+    sudo curl -L --fail https://github.com/AppTower/docker-compose/releases/download/latest/run.sh -o /usr/local/bin/docker-compose
 
-How to access the USB based QR Code Scanner inside the application as well as further details about the source code can be found in the [implementation section](docs/Implementation.md).
+    sudo chmod +x /usr/local/bin/docker-compose
 
-- [Accessing QR Code Scanner](docs/Implementation.md#accessing-qr-code-scanner) inside the application
-- [Publishing QR Code](docs/Implementation.md#accessing-qr-code-scanner) to the IE Databus
+## **Clone the application from Github**
 
-## Documentation
+To clone the latest version of LoRa Basics™ Station from Github use the following commands:
 
-- Here is a link to the [docs](docs/) of this application example.
-- You can find further documentation and help in the following links
-  - [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/#/documentation)
-  - [Industrial Edge Forum](https://www.siemens.com/industrial-edge-forum)
-  - [Industrial Edge landing page](http://siemens.com/industrial-edge)
-  
-## Contribution
-
-Thanks for your interest in contributing. Anybody is free to report bugs, unclear documentation, and other problems regarding this repository in the Issues section or, even better, is free to propose any changes to this repository using Merge Requests.
-
-## Licence and Legal Information
-
-Please read the [Legal information](LICENSE.md).
+    cd /home
+    git clone https://github.com/......   [Link einfügen]
