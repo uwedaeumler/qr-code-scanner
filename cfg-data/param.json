@@ -1,6 +1,0 @@
- 
-{
-    "Scannertype": "Siemens AG MV320", 
-    "Topic": "qrcode",
-    "Variable": "GDB.appSignals.APP_QRCode"
-}

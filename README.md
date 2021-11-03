@@ -63,3 +63,11 @@ To clone the latest version of LoRa Basics™ Station from Github use the follow
 
     cd /home
     git clone https://github.com/......   [Link einfügen]
+
+The repository can now be opened by the following command:
+
+    cd qr-code-scanner/ [anpassen ggf.]
+
+## **Build Docker-File**
+
+
