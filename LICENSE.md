@@ -6,7 +6,7 @@ Application examples illustrate the solution of automation tasks through an inte
 
 Any change to the application examples is your responsibility. The application examples are not required to undergo the customary tests and quality inspections of a chargeable product; they may have functional and performance defects as well as errors. It is your responsibility to use them in such a manner that any malfunctions that may occur do not result in property damage or injury to persons. Siemens reserves the right to make changes to the application examples at any time without notice. The application examples of this repository are licensed under the MIT License (see below).
 
-## MIT License
+## **MIT License**
 
 Copyright 2021 Siemens AG
 

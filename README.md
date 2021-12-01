@@ -1,6 +1,21 @@
 # **QR-Scanner-Application**
 
-This IOT2050 application has the task of.... [overview text]
+- [**QR-Scanner-Application**](#qr-scanner-application)
+  - [**Overview**](#overview)
+  - [**Hardware**](#hardware)
+  - [**Prepare the IOT2050**](#prepare-the-iot2050)
+  - [**Install Docker on the IOT2050**](#install-docker-on-the-iot2050)
+  - [**Clone the application from Github**](#clone-the-application-from-github)
+  - [**Build Docker-File**](#build-docker-file)
+  - [**Optional: Import Node-Red Flow**](#optional-import-node-red-flow)
+  - [**Start the QR-Code-Application**](#start-the-qr-code-application)
+  - [**Related Links**](#related-links)
+  - [**Contribution**](#contribution)
+  - [**License and Legal Information**](#license-and-legal-information)
+
+## **Overview**
+
+This IOT2050 application has the task to read barcodes and QR-codes using an external USB scanner, decode them and send them using MQTT. The example shown uses Docker and Node-Red for this purpose.
 
 ![overview application](images/overview.png)
 
@@ -16,7 +31,7 @@ The following hardware components are required for the application:
 Follow [SIMATIC_IOT2050_Setting_up.md](https://github.com/SIMATICmeetsLinux/IOT2050-SmartFarming-Application/blob/main/docs/SIMATIC_IOT2050_setting_up.md) for the following steps:
 
 - Installing the SD-Card Example Image (in this example the image V1.1.1 was used)
-- First commissioning of the SIMATIC IOT2050: Remote access with Putty SSH Connection
+- First commissioning of the SIMATIC IOT2050: Remote access with Putty SSH Connection (login as root)
 - Working internet connection on the IOT2050
 
 In addition, the barcode scanner must now be connected to the IOT2050 via USB. The following command can be used to check whether the scanner is connected:
@@ -27,31 +42,21 @@ In addition, the barcode scanner must now be connected to the IOT2050 via USB. T
 
 An update must be performed for the system and *git* must be installed. The following commands are executed for this:
 
-    sudo apt-get update
-    sudo apt-get upgrade
-    sudo apt-get install git
+    apt-get update
+    apt-get upgrade
+    apt-get install git
 
 ## **Install Docker on the IOT2050**
 
-**Set up the repository:**
+Use the following commands:
 
-    sudo apt-get install \ ca-certificates \ curl \ gnupg
-    
-    sudo apt-get install lsb-release
+    curl -fsSL https://get.docker.com -o get-docker.sh
 
-    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-    echo \ "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-**Install Docker Engine:**
-
-    sudo apt-get update
-
-    sudo apt-get install docker-ce docker-ce-cli containerd.io
+    sh ./get-docker.sh
 
 **Verify the successful installation:**
 
-    sudo docker run hello-world
+    docker run hello-world
 
 If the installation is successful, the output should contain the following:
 
@@ -88,7 +93,7 @@ The following command in the application-repository can be used to build the doc
 
 On the Example Image version 1.1.1 (used in this manual) Node-Red is already preinstalled and autostart is enabled. To access it, open a browser on your PC connected to the IOT2050 and open the URL `http://<IP of the IOT2050>:1880/`.
 
-Download the ready-made JSON-FIle: [qr-code-flow.json](qr-code-flow.json)
+Download the ready-made JSON-File: [qr-code-flow.json](src/qr-code-flow.json)
 
 Import the flow and press the "deploy-button":
 
@@ -112,10 +117,12 @@ Barcodes and QR-Codes can now be scanned using the scanner. These are then displ
 
 The following examples can be used for testing:
 
-![barcode example](images/example-barcode.png)
-![qr-code example](images/example-qr-code.png)
-![example output](images/example-output.png)
-![node-red output](images/node-red-output.png)
+|Examples|Input/Output|
+|-|-|
+|Barcode|![barcode example](images/example-barcode.png)|
+|QR-Code|![qr-code example](images/example-qr-code.png)|
+|Barcode output (terminal)|![example output](images/example-output.png)|
+|Barcode output (node-red)|![node-red output](images/node-red-output.png)
 
 ## **Related Links**
 
@@ -129,6 +136,6 @@ The following examples can be used for testing:
 
 Thanks for your interest in contributing. Anybody is free to report bugs, unclear documenation, and other problems regarding this repository in the Issues section or, even better, is free to propose any changes to this repository using Merge Requests.
 
-## **Licence and Legal Information**
+## **License and Legal Information**
 
 Please read the [Legal information](LICENSE.md).
