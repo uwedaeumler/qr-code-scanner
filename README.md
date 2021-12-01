@@ -1,6 +1,6 @@
-# **QR-Scanner-Application**
+# **QR-/Barcode-Scanner-Application**
 
-- [**QR-Scanner-Application**](#qr-scanner-application)
+- [**QR-/Barcode-Scanner-Application**](#qr-barcode-scanner-application)
   - [**Overview**](#overview)
   - [**Hardware**](#hardware)
   - [**Prepare the IOT2050**](#prepare-the-iot2050)
@@ -15,7 +15,7 @@
 
 ## **Overview**
 
-This IOT2050 application has the task to read barcodes and QR-codes using an external USB scanner, decode them and send them using MQTT. The example shown uses Docker and Node-Red for this purpose.
+The IOT2050 application was developed to read barcodes and QR-codes by using an external USB scanner, decode the codes and transmit them using MQTT. The following example uses Docker and Node-Red to do so.
 
 ![overview application](images/overview.png)
 
@@ -34,7 +34,7 @@ Follow [SIMATIC_IOT2050_Setting_up.md](https://github.com/SIMATICmeetsLinux/IOT2
 - First commissioning of the SIMATIC IOT2050: Remote access with Putty SSH Connection (login as root)
 - Working internet connection on the IOT2050
 
-In addition, the barcode scanner must now be connected to the IOT2050 via USB. The following command can be used to check whether the scanner is connected:
+In addition, the barcode scanner must now be connected to the IOT2050 via USB. The following command can be used to check if the scanner is connected:
 
     lsusb
 
@@ -58,7 +58,7 @@ Use the following commands:
 
     docker run hello-world
 
-If the installation is successful, the output should contain the following:
+If the installation was successful, the output should contain the following:
 
 ![successful installation](images/docker_installation.png)
 
@@ -113,7 +113,7 @@ The application is ready when it is successfully launched:
 
 ![successfully launched](images/launched_success.png)
 
-Barcodes and QR-Codes can now be scanned using the scanner. These are then displayed in the terminal and transferred to Node-Red via the mqtt node.
+Barcodes and QR-Codes can now be read using the scanner. These are then displayed in the terminal and transferred to Node-Red via the mqtt node.
 
 The following examples can be used for testing:
 
