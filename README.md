@@ -35,11 +35,13 @@ An update must be performed for the system and *git* must be installed. The foll
 
 **Set up the repository:**
 
-    sudo apt-get update
-
-    sudo apt-get install \ ca-certificates \ curl \ gnupg \ lsb-release
+    sudo apt-get install \ ca-certificates \ curl \ gnupg
+    
+    sudo apt-get install lsb-release
 
     curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+    echo \ "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 **Install Docker Engine:**
 
@@ -55,6 +57,8 @@ If the installation is successful, the output should contain the following:
 
 ![successful installation](images/docker_installation.png)
 
+For more information on installing Docker click [here](https://docs.docker.com/engine/install/debian/).
+
 **Add Docker-Compose:**
 
     sudo curl -L --fail https://github.com/AppTower/docker-compose/releases/download/latest/run.sh -o /usr/local/bin/docker-compose
@@ -63,7 +67,7 @@ If the installation is successful, the output should contain the following:
 
 ## **Clone the application from Github**
 
-To clone the latest version of LoRa Basics™ Station from Github use the following commands:
+To clone the latest version of the application from Github use the following commands:
 
     cd /home
     git clone https://github.com/uwedaeumler/qr-code-scanner  [Link einfügen]
@@ -112,3 +116,19 @@ The following examples can be used for testing:
 ![qr-code example](images/example-qr-code.png)
 ![example output](images/example-output.png)
 ![node-red output](images/node-red-output.png)
+
+## **Related Links**
+
+||Topic|
+|-|-|
+|1|SIMATIC IOT2050 forum: [https://support.industry.siemens.com/tf/ww/en/threads/309](https://support.industry.siemens.com/tf/ww/en/threads/309)|
+|2|SIMATIC IOT2050 Getting Started: [https://support.industry.siemens.com/tf/ww/en/posts/238945/](https://support.industry.siemens.com/tf/ww/en/posts/238945/)|
+|3|Operating Instructions: [https://support.industry.siemens.com/cs/ww/en/view/109779016](https://support.industry.siemens.com/cs/ww/en/view/109779016)|
+
+## **Contribution**
+
+Thanks for your interest in contributing. Anybody is free to report bugs, unclear documenation, and other problems regarding this repository in the Issues section or, even better, is free to propose any changes to this repository using Merge Requests.
+
+## **Licence and Legal Information**
+
+Please read the [Legal information](LICENSE.md).
